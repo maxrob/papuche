@@ -1,5 +1,15 @@
-<h1>New Message</h1>
+<h1>Continuer l'histoire</h1>
 
-<%= render 'form' %>
+<%= @message.errors.full_messages.join(',') %>
 
-<%= link_to 'Back', messages_path %>
+<%= form_for @message do |f| %>
+
+    <%= f.hidden_field :user_id, value: @message.user_id %>
+    <%= f.hidden_field :story_id, value: @message.story_id %>
+    <%= @title %> <br/>
+    <%= @story_content %> <%= f.text_field :content, placeholder: "..." %> <br/>
+    <%= f.submit %>
+
+<% end %>
+
+<%= link_to 'Annuler', stories_path %>

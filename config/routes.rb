@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :stories
   get 'stories' => 'stories#index'
 
+  resources :messages
+
 
 
 

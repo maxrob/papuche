@@ -11,6 +11,8 @@ class Story < ActiveRecord::Base
       tokenizer: lambda { |str| str.scan(/\s+|$/) },
   }
 
+  before_save :add_begin_story
+
   # TODO vérifier limite par nom et pas par caractères
 
   def finished!
@@ -27,6 +29,11 @@ class Story < ActiveRecord::Base
 
   def self.random
     Story.all_finished.shuffle
+  end
+
+  private
+  def add_begin_story
+    self.content = 'Il était une fois ' + self.content
   end
 
 end

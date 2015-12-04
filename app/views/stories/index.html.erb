@@ -12,9 +12,12 @@
   <tbody>
     <% @stories.each do |story| %>
       <tr>
-        <td><%= link_to 'Show', story %></td>
+        <th><%= story.title %></th>
+        <td> - <%= story.content %></td>
+
+        <td><%= link_to 'Contribute', new_message_path(story_id: story.id.to_s) %></td>
         <td><%= link_to 'Edit', edit_story_path(story) %></td>
-        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
