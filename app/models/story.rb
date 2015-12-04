@@ -1,7 +1,7 @@
 class Story < ActiveRecord::Base
-  has_many :messages
-  has_many :permissions
-  has_many :likes
+  has_many :messages, dependent: :destroy
+  has_many :permissions, dependent: :destroy
+  has_many :likes, dependent: :destroy
   belongs_to :user
 
   validates :title, :content, :user_id, presence: true

@@ -7,9 +7,6 @@ class StoriesController < ApplicationController
     @stories = Story.all
   end
 
-  # GET /contribute
-  def contribute
-  end
 
   # GET /stories/new
   def new
