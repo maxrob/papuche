@@ -15,6 +15,9 @@ class Story < ActiveRecord::Base
 
   # TODO vérifier limite par nom et pas par caractères
 
+
+
+
   def finished!
     self.finished = true
   end

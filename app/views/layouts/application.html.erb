@@ -11,6 +11,8 @@
 
 <%= render "layouts/header" %>
 
+<%= @test ? @test.inspect : '' %>
+
 <%= yield %>
 
 <%= render "layouts/footer" %>

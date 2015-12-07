@@ -8,8 +8,11 @@ Rails.application.routes.draw do
 
   resources :stories
   get 'stories' => 'stories#index'
+  get 'like_story' => 'stories#like'
 
   resources :messages
+
+
 
 
 
