@@ -1,4 +1,7 @@
+<%= image_tag @user.avatar.url(:medium),  size: '150x150' %>
 <%= @user.email %>
+<%= @user.nickname %>
+
 
 <%= link_to 'Edit', edit_user_registration_path %> |
 <%= link_to 'Back', users_path %>
