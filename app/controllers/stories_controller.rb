@@ -1,6 +1,7 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: [:show, :destroy]
-  before_action :authenticate_user!, only: [:new, :create, :like, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :like, :dislike, :destroy]
+  before_action :own_action, only: [:destroy]
 
   # GET /stories
   # GET /stories.json
@@ -34,39 +35,38 @@ class StoriesController < ApplicationController
   end
 
   def like
-    if params[:story_id].present?
+    Like.like!(story_id: params[:story_id], user_id: current_user.id)
+    render text: "Like success"
+  end
 
-      Like.create(story_id: params[:story_id], user_id: current_user.id)
-      render text: "Like success"
-    else
-      render text: "Histoire introuvable"
-    end
-
+  def dislike
+    Like.dislike!(story_id: params[:story_id], user_id: current_user.id)
+    render text: "Dislike success"
   end
 
   # DELETE /stories/1
   # DELETE /stories/1.json
   def destroy
 
-    if @story.user_id != current_user.id
-      redirect_to stories_path, notice: "Suppression impossible."
-    else
-      @story.destroy
-      respond_to do |format|
-        format.html { redirect_to stories_path, notice: "L'histoire a été supprimée." }
-        format.json { head :no_content }
-      end
+    @story.destroy
+    respond_to do |format|
+      format.html { redirect_to stories_path, notice: "L'histoire a été supprimée." }
+      format.json { head :no_content }
     end
 
   end
-
-
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_story
       @story = Story.find(params[:id])
+    end
+
+    # Restrict own update about own Objects
+    def own_action
+      if @story.user_id != current_user.id
+        redirect_to @story, notice: "Vous n'avez pas les droits necessaires"
+      end
     end
 
 

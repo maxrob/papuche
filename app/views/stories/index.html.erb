@@ -14,7 +14,7 @@
         <td> - <%= story.content %></td>
 
         <td><%= link_to "Contribuer", new_message_path(story_id: story.id.to_s) %></td>
-        <td><%= link_to "❤", like_story_path(story_id: story.id.to_s), method: :get %></td>
+        <td><%= link_to "❤", story_like_path(story), method: :get %></td>
         <td><%= button_to "Supprimer l'histoire", story, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>

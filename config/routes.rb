@@ -1,18 +1,19 @@
 Rails.application.routes.draw do
 
-  # Devise g users
-  devise_for :users
-
-
   root 'stories#index'
 
-  resources :stories
+
+  devise_for :users
+  resources :users, only: [:index, :show]
+
+  resources :stories do
+    get 'like', as: :like
+    get 'dislike', as: :dislike
+  end
   get 'stories' => 'stories#index'
-  get 'like_story' => 'stories#like'
+  get 'stories/:id/like' => 'stories#like'
 
   resources :messages
-
-
 
 
 
