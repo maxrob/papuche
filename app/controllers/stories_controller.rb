@@ -6,10 +6,10 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories_top = Story.top_finished
-    @stories_finished = Story.all_finished
-    @stories_unfinished = Story.all_unfinished
-    @stories_random = Story.random
+    @stories_top = Story.top_finished.page params[:page]
+    @stories_finished = Story.all_finished.page params[:page]
+    @stories_unfinished = Story.all_unfinished.page params[:page]
+    @stories_random = Story.random.page params[:page]
   end
 
   # GET /stories/new

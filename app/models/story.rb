@@ -4,6 +4,8 @@ class Story < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   belongs_to :user
 
+  paginates_per 5
+
   validates :title, :content, :user_id, presence: true
   validates :content, length: {
       minimum: 1,
@@ -29,7 +31,7 @@ class Story < ActiveRecord::Base
   end
 
   def self.random
-    Story.all_finished.shuffle
+    Story.where(finished: true).order('RANDOM()').includes(:messages, :user)
   end
 
   def self.top_finished

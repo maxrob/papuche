@@ -8,7 +8,7 @@
   </thead>
 
   <tbody>
-    <% @stories_top.each do |story| %>
+    <% @stories_unfinished.each do |story| %>
       <tr>
         <th><%= story.title %></th>
         <td> - <%= story.content %></td>
@@ -20,7 +20,8 @@
         <td><%= link_to "❤", story_like_path(story), method: :get %></td>
         <td><%= button_to "Supprimer l'histoire", story, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
-    <% end %>
+  <% end %>
+  <%= paginate @stories_unfinished %>
   </tbody>
 </table>
 

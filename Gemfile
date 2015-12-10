@@ -54,6 +54,9 @@ gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
 # Session gem
 gem 'devise'
 
+# Pagination gem
+gem 'kaminari'
+
 # Avatar gem
 gem 'aws-sdk', '>= 2.0.0'
 gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
