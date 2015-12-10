@@ -16,7 +16,7 @@ class Message < ActiveRecord::Base
                         {story_id: story_id, last_writer_timestamp: last_writer_timestamp}).first.nil? )
   end
 
-  def self.user_already_contribute?(user_id:, story_id:)
+  def self.user_already_contribute?(user_id, story_id)
     ( Story.find(story_id).user_id == user_id ) || !( self.find_by(story_id: story_id, user_id: user_id).nil? )
   end
 
