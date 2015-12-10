@@ -8,10 +8,13 @@
   </thead>
 
   <tbody>
-    <% @stories.each do |story| %>
+    <% @stories_top.each do |story| %>
       <tr>
         <th><%= story.title %></th>
         <td> - <%= story.content %></td>
+        <% story.messages.each do |message| %>
+            <td> - <%= message.content %></td>
+        <% end %>
 
         <td><%= link_to "Contribuer", new_message_path(story_id: story.id.to_s) %></td>
         <td><%= link_to "❤", story_like_path(story), method: :get %></td>

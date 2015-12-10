@@ -6,9 +6,11 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.all
+    @stories_top = Story.top_finished
+    @stories_finished = Story.all_finished
+    @stories_unfinished = Story.all_unfinished
+    @stories_random = Story.random
   end
-
 
   # GET /stories/new
   def new

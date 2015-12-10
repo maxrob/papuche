@@ -21,15 +21,19 @@ class Story < ActiveRecord::Base
   end
 
   def self.all_finished
-    Story.where(finished: true).includes(:messages, :user)
+    Story.where(finished: true).order(created_at: :desc).includes(:messages, :user)
   end
 
   def self.all_unfinished
-    Story.where(finished: false).includes(:messages, :user)
+    Story.where(finished: false).order(created_at: :asc).includes(:messages, :user)
   end
 
   def self.random
     Story.all_finished.shuffle
+  end
+
+  def self.top_finished
+    Story.where(finished: true).order(like: :desc).includes(:messages, :user)
   end
 
   private
