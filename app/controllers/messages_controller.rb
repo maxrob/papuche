@@ -15,11 +15,18 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
 
-    if @message.save
-      redirect_to stories_path, notice: "Histoire continué avec succès"
+    if Permission.timeout?(user_id: current_user.id, story_id: @message.story_id)
+      redirect_to stories_path, notice: "Temps d'écriture dépassé. Veuillez réessayer."
+
     else
-      self._fill_form
+      if @message.save
+        @message.check_story_finished!
+        redirect_to stories_path, notice: "Histoire continué avec succès."
+      else
+        self._fill_form
+      end
     end
+
 
   end
 
@@ -30,18 +37,23 @@ class MessagesController < ApplicationController
 
       story_id  = params[:story_id].to_i
       user_id   = current_user.id
+      story     = Story.find(story_id)
 
       if Message.user_already_contribute?(user_id: user_id, story_id: story_id)
-        redirect_to stories_path, notice: "Vous avez déjà contribué à l'histoire"
+        redirect_to stories_path, notice: "Vous avez déjà contribué à l'histoire."
 
       elsif Message.someone_writing?(story_id: story_id)
-        redirect_to stories_path, notice: "Someone writing"
+        redirect_to stories_path, notice: "Une contribution est en cours."
+
+      elsif story.finished
+        redirect_to stories_path, notice: "L'histoire est déjà terminé."
+
       else
         Permission.create(user_id: user_id, story_id: story_id)
 
         # init var for view
         @story_content      = Message.get_story_content(story_id: story_id)
-        @title              = Story.find(story_id).title
+        @title              = story.title
         @message            = Message.new(story_id: story_id, user_id: user_id )
       end
 

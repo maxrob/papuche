@@ -1,7 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  database: papuche_development
+  pool: 5
+  username: postgres
+  password: marion
+
 development:
   adapter: postgresql
   encoding: unicode
-  database: papuche_dev
+  database: papuche_development
   pool: 5
   username: postgres
   password: marion
@@ -10,6 +18,14 @@ test:
   adapter: postgresql
   encoding: unicode
   database: papuche_test
+  pool: 5
+  username: postgres
+  password: marion
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: papuche_production
   pool: 5
   username: postgres
   password: marion
