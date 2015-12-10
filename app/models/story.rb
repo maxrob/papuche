@@ -12,6 +12,8 @@ class Story < ActiveRecord::Base
       maximum: 10,
       tokenizer: lambda { |str| str.scan(/\s+|$/) },
   }
+  validates :content, length: { maximum: 240 }
+
 
   before_save :add_begin_story
 

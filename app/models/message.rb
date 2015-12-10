@@ -3,6 +3,7 @@ class Message < ActiveRecord::Base
   belongs_to :story
 
   validates :content, :user_id, :story_id, presence: true
+  validates :content, length: { maximum: 240 }
   validates :content, length: {
       minimum: 1,
       maximum: 10,
