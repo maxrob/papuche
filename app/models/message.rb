@@ -10,9 +10,9 @@ class Message < ActiveRecord::Base
   }
 
   def self.someone_writing?(story_id:)
-    #TODO: use var define in config
+    #TODO: use var define in config for "30"
     last_writer_timestamp = Time.now - 30
-    !( Permission.where("story_id = :story_id AND updated_at >= :last_writer_timestamp",
+    !( Permission.where('story_id = :story_id AND updated_at >= :last_writer_timestamp',
                         {story_id: story_id, last_writer_timestamp: last_writer_timestamp}).first.nil? )
   end
 
