@@ -35,30 +35,41 @@ class MessagesController < ApplicationController
 
     if params[:story_id].present?
 
-      story_id  = params[:story_id].to_i
       user_id   = current_user.id
-      story     = Story.find(story_id)
+      story     = Story.find(params[:story_id].to_i)
 
-      if Message.user_already_contribute?(user_id: user_id, story_id: story_id)
-        redirect_to stories_path, notice: "Vous avez déjà contribué à l'histoire."
+      response = self._redirect?(story: story, user_id: user_id)
 
-      elsif Message.someone_writing?(story_id: story_id)
-        redirect_to stories_path, notice: "Une contribution est en cours."
-
-      elsif story.finished
-        redirect_to stories_path, notice: "L'histoire est déjà terminé."
-
-      else
-        Permission.create(user_id: user_id, story_id: story_id)
+      if response.nil?
+        Permission.create(user_id: user_id, story_id: story.id)
 
         # init var for view
-        @story_content      = Message.get_story_content(story_id: story_id)
+        @story_content      = Message.get_story_content(story_id: story.id)
         @title              = story.title
-        @message            = Message.new(story_id: story_id, user_id: user_id )
+        @message            = Message.new(story_id: story.id, user_id: user_id )
+
+      else
+        redirect_to stories_path, notice: response
       end
 
     else
       redirect_to stories_path, notice: "Histoire non identifié"
+    end
+  end
+
+
+  def _redirect?(story:, user_id:)
+    if Message.user_already_contribute?(user_id: user_id, story_id: story.id)
+      return "Vous avez déjà contribué à l'histoire."
+
+    elsif Message.someone_writing?(story_id: story.id)
+      return "Une contribution est en cours."
+
+    elsif story.finished
+      return "L'histoire est déjà terminé."
+
+    else
+      return nil
     end
   end
 

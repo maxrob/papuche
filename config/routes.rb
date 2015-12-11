@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'stories#index'
 
 
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'registrations'}
   resources :users, only: [:index, :show]
 
   resources :stories do
