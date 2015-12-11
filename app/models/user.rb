@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
                         default_url:  "/assets/images/avatars/default.jpg",
                         path:         "public/assets/images/avatars/:style/:hash.:extension",
                         url:          "/assets/images/avatars/:style/:hash.:extension",
-                        hash_secret:  "b1e0dc8bf196c6e0b2370fc354516537ca617f86"
+                        hash_secret:  Rails.configuration.x.custom['avatar_hash']
 
                     }
 

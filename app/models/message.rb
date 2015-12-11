@@ -12,8 +12,8 @@ class Message < ActiveRecord::Base
 
 
   def self.someone_writing?(story_id:)
-    #TODO: use var define in config for "30"
-    last_writer_timestamp = Time.now - 30
+
+    last_writer_timestamp = Time.now - Rails.configuration.x.custom['writing_time']
     !( Permission.where('story_id = :story_id AND updated_at >= :last_writer_timestamp',
                         {story_id: story_id, last_writer_timestamp: last_writer_timestamp}).first.nil? )
   end
@@ -23,7 +23,7 @@ class Message < ActiveRecord::Base
   end
 
   def check_story_finished!
-    if Message.where(story_id: self.story_id).count >= 2
+    if Message.where(story_id: self.story_id).count >= Rails.configuration.x.custom['max_contributor']
       Story.find(self.story_id).finished!
     end
   end
