@@ -1,8 +1,8 @@
 <div id="navBar">
 	<ul id="leftHMenu" class="listChoice">
-		<li><%= image_tag('logo-papuche.svg')%></li>
-		<li><a href="#">Accueil</a></li>
-		<li><a href="#">Nouvelle histoire</a></li>
+		<li><%= link_to image_tag('logo-papuche.svg'), root_path %></li>
+		<li><%= link_to "Accueil", root_path %></li>
+		<li><%= link_to "Nouvelle histoire", new_story_path %></li>
 	</ul>
 	<ul class="listChoice">
 	<% if user_signed_in? %>
@@ -11,8 +11,8 @@
 	    	<div id="profilepic"><%= image_tag('profilImg.jpg')%></div><div id="arrowProfile"><%= image_tag('arrowProfile.svg')%></div><div id="menuProfile">
 	    		<%= image_tag('arrowOptions.svg')%>
 	    		<ul id="contentMenuProfile">
-	    			<li><a href="#">Mon Profil</a></li>
-	    			<li><a href="#">Editer le profil</a></li>
+	    			<li><%= link_to "Mon profil", current_user %></li>
+	    			<li><%= link_to "Editer le profil", edit_user_registration_path %></a></li>
 	    			<li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete %></li>
 	    		</ul>
 			</div>
