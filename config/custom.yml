@@ -1,0 +1,19 @@
+default:
+  writing_time:     30
+  max_contributor:  9
+  avatar_hash:      b1e0dc8bf196c6e0b2370fc354516537ca617f86
+
+development:
+  writing_time:     30
+  max_contributor:  9
+  avatar_hash:      b1e0dc8bf196c6e0b2370fc354516537ca617f86
+
+production:
+  writing_time:     30
+  max_contributor:  9
+  avatar_hash:      b1e0dc8bf196c6e0b2370fc354516537ca617f86
+
+test:
+  writing_time:     30
+  max_contributor:  9
+  avatar_hash:      b1e0dc8bf196c6e0b2370fc354516537ca617f86
