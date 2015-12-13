@@ -1,17 +1,42 @@
 <div class="item">
   <h3><%= story.title %></h3>
   <%= image_tag('uponatime.svg', class: 'uponatime') %>
-  <p><%= story.content %></p>
+  <p><%= story.content %>
+
+
+  <%# init vars %>
   <% story_continued = story.content %>
-  <% story.messages.each do |message| %>
-      <p> - <%= message.content %></p>
-      <% story_continued += ' - ' + message.content %>
+  <% contributed = false %>
+  <% liked = false %>
+
+  <%# liked? %>
+  <% story.likes.each do |like| %>
+    <% if like.user_id == current_user.id %>
+        <% liked = true %>
+    <% end %>
   <% end %>
+
+
+  <%# messages loop %>
+  <% story.messages.each do |message| %>
+      <span> - <%= message.content %></span>
+
+        <% story_continued += ' - ' + message.content %>
+        <% if message.user_id == current_user.id %>
+            <% contributed = true %>
+        <% end %>
+  <% end %>
+
+
+  </p>
   <div class="optionStory">
-    <%= link_to "Contribuer", new_message_path(story_id: story.id.to_s) %>
+
+    <%= contributed ? "J'ai déjà contribué" : ( link_to "Contribuer", new_message_path(story_id: story.id.to_s) ) %>
+
+
     <%= link_to 'https://twitter.com/intent/tweet?text="Il était une fois '+truncate(story_continued, length: 100)+'" LINK', target: "_blank"  do %>
         <%= image_tag("http://allthingsd.com/files/2012/06/twitter-bird-1-380x285.png", width: 25, height: 25, border: 0) %>
     <% end %>
-    <%= link_to "❤", story_like_path(story), method: :get %>
+    <%= link_to "❤", liked ? story_dislike_path(story) : story_like_path(story), method: :get %>
   </div>
 </div>

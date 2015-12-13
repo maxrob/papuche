@@ -15,24 +15,26 @@ class Story < ActiveRecord::Base
   validates :content, length: { maximum: 240 }
 
 
+  # TODO vérifier limite par nom et pas par caractères
+
   def finished!
     self.update_attribute(:finished, true)
   end
 
   def self.all_finished
-    Story.where(finished: true).order(created_at: :desc).includes(:messages, :user)
+    Story.where(finished: true).order(created_at: :desc).includes(:messages, :user, :likes)
   end
 
   def self.all_unfinished
-    Story.where(finished: false).order(created_at: :asc).includes(:messages, :user)
+    Story.where(finished: false).order(created_at: :asc).includes(:messages, :user, :likes)
   end
 
   def self.random
-    Story.where(finished: true).order('RANDOM()').includes(:messages, :user)
+    Story.where(finished: true).order('RANDOM()').includes(:messages, :user, :likes)
   end
 
   def self.top_finished
-    Story.where(finished: true).order(like: :desc).includes(:messages, :user)
+    Story.where(finished: true).order(like: :desc).includes(:messages, :user, :likes)
   end
 
 end
