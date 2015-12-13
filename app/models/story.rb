@@ -22,19 +22,35 @@ class Story < ActiveRecord::Base
   end
 
   def self.all_finished
-    Story.where(finished: true).order(created_at: :desc).includes(:messages, :user, :likes)
+    self.where(finished: true).order(created_at: :desc).includes(:messages, :user, :likes)
   end
 
   def self.all_unfinished
-    Story.where(finished: false).order(created_at: :asc).includes(:messages, :user, :likes)
+    self.where(finished: false).order(created_at: :asc).includes(:messages, :user, :likes)
   end
 
   def self.random
-    Story.where(finished: true).order('RANDOM()').includes(:messages, :user, :likes)
+    self.where(finished: true).order('RANDOM()').includes(:messages, :user, :likes)
   end
 
   def self.top_finished
-    Story.where(finished: true).order(like: :desc).includes(:messages, :user, :likes)
+    self.where(finished: true).order(like: :desc).includes(:messages, :user, :likes)
+  end
+
+  def self.all_liked(user_id:)
+    Story
+        .joins(:likes)
+        .where(["likes.user_id = ?", user_id])
+        .order("likes.created_at DESC")
+        .includes(:messages, :user, :likes)
+  end
+
+  def self.all_contributed(user_id:)
+    Story
+        .joins(:messages)
+        .where(["messages.user_id = ?", user_id])
+        .order("messages.created_at DESC")
+        .includes(:messages, :user, :likes)
   end
 
 end
