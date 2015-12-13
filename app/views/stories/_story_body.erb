@@ -1,12 +1,13 @@
 <div class="item">
   <h3><%= story.title %></h3>
   <%= image_tag('uponatime.svg', class: 'uponatime') %>
-  <p><%= story.content %></p>
+  <p><%= story.content %>
   <% story_continued = story.content %>
   <% story.messages.each do |message| %>
-      <p> - <%= message.content %></p>
+      <span> - <%= message.content %></span>
       <% story_continued += ' - ' + message.content %>
   <% end %>
+  </p>
   <div class="optionStory">
     <%= link_to "Contribuer", new_message_path(story_id: story.id.to_s) %>
     <%= link_to 'https://twitter.com/intent/tweet?text="Il était une fois '+truncate(story_continued, length: 100)+'" LINK', target: "_blank"  do %>
