@@ -1,30 +1,90 @@
-<h1>Listing Stories</h1>
+<h2>Listing Stories</h2>
+<div class="descPage">
+  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+</div>
+<div class="buttonSite">
+  <p>Participer</p>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div id="storyBar">
+  <ul class="listChoice"> 
+    <li id="cat0" class="isHighlight" onclick = "goToMenu(0)">Plus Récent</li>
+    <li id="cat1" onclick = "goToMenu(1)">Populaire</li>
+    <li id="cat2" onclick = "goToMenu(2)">Aléatoire</li>
+    <li id="cat3" onclick = "goToMenu(3)">En cours</li>
+  </ul>
+  <div class="newStory"><%= link_to "#{ image_tag('newstory.png') }Nouvelle histoire".html_safe, new_story_path %></div>
+</div>
 
-  <tbody>
-    <% @stories_unfinished.each do |story| %>
-      <tr>
-        <th><%= story.title %></th>
-        <td> - <%= story.content %></td>
+<div id="container_new" class="container_visible">
+  <% @stories_finished.each do |story| %>
+    <div class="item">
+        <h3><%= story.title %></h3>
+        <%= image_tag('uponatime.svg', class: 'uponatime') %>
+        <p><%= story.content %></p>
         <% story.messages.each do |message| %>
-            <td> - <%= message.content %></td>
+            <p> - <%= message.content %></p>
         <% end %>
-
-        <td><%= link_to "Contribuer", new_message_path(story_id: story.id.to_s) %></td>
-        <td><%= link_to "❤", story_like_path(story), method: :get %></td>
-        <td><%= button_to "Supprimer l'histoire", story, method: :delete, data: { confirm: "Are you sure?" } %></td>
-      </tr>
+        <div class="optionStory">
+          <%= link_to "Contribuer", new_message_path(story_id: story.id.to_s) %>
+          <%= link_to "❤", story_like_path(story), method: :get %>
+          <%= button_to "Supprimer l'histoire", story, method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+    </div>
   <% end %>
-  <%= paginate @stories_unfinished %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Story', new_story_path %>
+<%= paginate @stories_finished %>
+</div>
+<div id="container_popular">
+  <% @stories_top.each do |story| %>
+    <div class="item">
+        <h3><%= story.title %></h3>
+        <%= image_tag('uponatime.svg', class: 'uponatime') %>
+        <p><%= story.content %></p>
+        <% story.messages.each do |message| %>
+            <p> - <%= message.content %></p>
+        <% end %>
+        <div class="optionStory">
+          <%= link_to "Contribuer", new_message_path(story_id: story.id.to_s) %>
+          <%= link_to "❤", story_like_path(story), method: :get %>
+          <%= button_to "Supprimer l'histoire", story, method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+    </div>
+  <% end %>
+<%= paginate @stories_top %>
+</div>
+<div id="container_random">
+  <% @stories_random.each do |story| %>
+    <div class="item">
+        <h3><%= story.title %></h3>
+        <%= image_tag('uponatime.svg', class: 'uponatime') %>
+        <p><%= story.content %></p>
+        <% story.messages.each do |message| %>
+            <p> - <%= message.content %></p>
+        <% end %>
+        <div class="optionStory">
+          <%= link_to "Contribuer", new_message_path(story_id: story.id.to_s) %>
+          <%= link_to "❤", story_like_path(story), method: :get %>
+          <%= button_to "Supprimer l'histoire", story, method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+    </div>
+  <% end %>
+<%= paginate @stories_random %>
+</div>
+<div id="container_unfinished">
+  <% @stories_unfinished.each do |story| %>
+    <div class="item">
+        <h3><%= story.title %></h3>
+        <%= image_tag('uponatime.svg', class: 'uponatime') %>
+        <p><%= story.content %></p>
+        <% story.messages.each do |message| %>
+            <p> - <%= message.content %></p>
+        <% end %>
+        <div class="optionStory">
+          <%= link_to "Contribuer", new_message_path(story_id: story.id.to_s) %>
+          <%= link_to "❤", story_like_path(story), method: :get %>
+          <%= button_to "Supprimer l'histoire", story, method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+    </div>
+  <% end %>
+<%= paginate @stories_unfinished %>
+</div>
