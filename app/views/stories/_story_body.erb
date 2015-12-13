@@ -1,0 +1,17 @@
+<div class="item">
+  <h3><%= story.title %></h3>
+  <%= image_tag('uponatime.svg', class: 'uponatime') %>
+  <p><%= story.content %></p>
+  <% story_continued = story.content %>
+  <% story.messages.each do |message| %>
+      <p> - <%= message.content %></p>
+      <% story_continued += ' - ' + message.content %>
+  <% end %>
+  <div class="optionStory">
+    <%= link_to "Contribuer", new_message_path(story_id: story.id.to_s) %>
+    <%= link_to 'https://twitter.com/intent/tweet?text="Il était une fois '+truncate(story_continued, length: 100)+'" LINK', target: "_blank"  do %>
+        <%= image_tag("http://allthingsd.com/files/2012/06/twitter-bird-1-380x285.png", width: 25, height: 25, border: 0) %>
+    <% end %>
+    <%= link_to "❤", story_like_path(story), method: :get %>
+  </div>
+</div>

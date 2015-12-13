@@ -4,7 +4,6 @@ class StoriesController < ApplicationController
   before_action :own_action, only: [:destroy]
 
   # GET /stories
-  # GET /stories.json
   def index
     @stories_top = Story.top_finished.page params[:page]
     @stories_finished = Story.all_finished.page params[:page]
@@ -20,20 +19,11 @@ class StoriesController < ApplicationController
 
 
   # POST /stories
-  # POST /stories.json
   def create
     @story = Story.new(story_params)
     @story.user_id = current_user.id
 
-    respond_to do |format|
-      if @story.save
-        format.html { redirect_to stories_path, notice: "L'histoire a bien été ajoutée." }
-        format.json { render :show, status: :created, location: @story }
-      else
-        format.html { render :edit }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
-      end
-    end
+    @story.save ? ( redirect_to stories_path, notice: "L'histoire a bien été ajoutée." ) : ( render :edit )
   end
 
   def like
@@ -51,10 +41,7 @@ class StoriesController < ApplicationController
   def destroy
 
     @story.destroy
-    respond_to do |format|
-      format.html { redirect_to stories_path, notice: "L'histoire a été supprimée." }
-      format.json { head :no_content }
-    end
+    redirect_to stories_path, notice: "L'histoire a été supprimée."
 
   end
 

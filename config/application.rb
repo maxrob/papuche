@@ -24,7 +24,7 @@ module Papuche
     config.active_record.raise_in_transactional_callbacks = true
 
     # Custom vars
-    config.x.story = Rails.application.config_for(:story)
+    config.x.custom = Rails.application.config_for(:custom)
 
   end
 end

@@ -15,13 +15,8 @@ class Story < ActiveRecord::Base
   validates :content, length: { maximum: 240 }
 
 
-  before_save :add_begin_story
-
-  # TODO vérifier limite par nom et pas par caractères
-
-
   def finished!
-    self.finished = true
+    self.update_attribute(:finished, true)
   end
 
   def self.all_finished
@@ -38,11 +33,6 @@ class Story < ActiveRecord::Base
 
   def self.top_finished
     Story.where(finished: true).order(like: :desc).includes(:messages, :user)
-  end
-
-  private
-  def add_begin_story
-    self.content = 'Il était une fois ' + self.content
   end
 
 end

@@ -1,10 +1,29 @@
-<% if user_signed_in? %>
-    <%= button_to "Déconnexion", destroy_user_session_path, method: :delete %>
-<% else %>
-    <%= button_to "Connexion", new_user_session_path, method: :get %>
-    <%= button_to "S'inscrire", new_user_registration_path, method: :get %>
-<% end %>
-
+<div id="navBar">
+	<ul id="leftHMenu" class="listChoice">
+		<li><%= link_to image_tag('logo-papuche.svg'), root_path %></li>
+		<li><%= link_to "Accueil", root_path %></li>
+		<li><%= link_to "Nouvelle histoire", new_story_path %></li>
+	</ul>
+	<ul class="listChoice">
+	<% if user_signed_in? %>
+		<li id="searchField"><input class="search" id="search" placeholder="Search..." /> <%= image_tag('searchIcon.svg', class: 'searchButton')%></li>
+	    <li id="userProfile" onclick="toggleProfileMenu()">
+	    	<div id="profilepic"><%= image_tag('profilImg.jpg')%></div><div id="arrowProfile"><%= image_tag('arrowProfile.svg')%></div><div id="menuProfile">
+	    		<%= image_tag('arrowOptions.svg')%>
+	    		<ul id="contentMenuProfile">
+	    			<li><%= link_to "Mon profil", current_user %></li>
+	    			<li><%= link_to "Editer le profil", edit_user_registration_path %></a></li>
+	    			<li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete %></li>
+	    		</ul>
+			</div>
+	    </li>
+	<% else %>
+		<li><a href="#">Accueil</a></li>
+	    <li><%= button_to "Connexion", new_user_session_path, method: :get, class: 'btn-test' %></li>
+	    <li><%= button_to "S'inscrire", new_user_registration_path, method: :get, class: 'btn-test' %></li>
+	<% end %>
+	</ul>
+</div>
 
 <% if notice %>
     <p class="alert alert-success"><%= notice %></p>

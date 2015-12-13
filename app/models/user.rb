@@ -5,11 +5,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_attached_file :avatar,
-                    :whiny => false,
-                    styles: {
-      medium: "300x300>", thumb: "100x100>"},
-                    url: "/assets/images/avatars/:id.:extension",
-                    default_url: "/assets/images/avatars/default.jpg"
+                    {
+                        whiny:        false,
+                        styles:       {medium: "300x300>", thumb: "100x100>"},
+                        default_url:  "/assets/images/avatars/default.jpg",
+                        path:         "public/assets/images/avatars/:style/:hash.:extension",
+                        url:          "/assets/images/avatars/:style/:hash.:extension",
+                        hash_secret:  Rails.configuration.x.custom['avatar_hash']
+
+                    }
+
 
   validates_uniqueness_of :nickname
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
