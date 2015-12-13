@@ -23,9 +23,7 @@ class StoriesController < ApplicationController
     @story = Story.new(story_params)
     @story.user_id = current_user.id
 
-    respond_to do |format|
-      @story.save ? ( redirect_to stories_path, notice: "L'histoire a bien été ajoutée." ) : ( render :edit )
-    end
+    @story.save ? ( redirect_to stories_path, notice: "L'histoire a bien été ajoutée." ) : ( render :edit )
   end
 
   def like
@@ -43,10 +41,7 @@ class StoriesController < ApplicationController
   def destroy
 
     @story.destroy
-    respond_to do |format|
-      format.html { redirect_to stories_path, notice: "L'histoire a été supprimée." }
-      format.json { head :no_content }
-    end
+    redirect_to stories_path, notice: "L'histoire a été supprimée."
 
   end
 
