@@ -24,7 +24,7 @@
 <%= paginate @liked_stories %>
 </div>
 
-<div id="container_contributed" class="container_visible">
+<div id="container_contributed">
   <% @contributed_stories.each do |story| %>
       <% render "stories/story_body", { story: story} %>
   <% end %>
