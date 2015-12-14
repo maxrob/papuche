@@ -17,8 +17,13 @@ class Story < ActiveRecord::Base
 
   # TODO vérifier limite par nom et pas par caractères
 
+
   def finished!
     self.update_attribute(:finished, true)
+  end
+
+  def self.get(story_id:)
+    Story.includes(:messages, :user, :likes).find(story_id)
   end
 
   def self.all_finished
