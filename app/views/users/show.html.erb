@@ -12,18 +12,21 @@
 
 <div id="storyBar">
   <ul class="listChoice">
-    <li id="cat0" class="isHighlight" onclick = "goToMenu(0)">Plus Récent</li>
-    <li id="cat3" onclick = "goToMenu(3)">En cours</li>
+    <li id="cat0" class="isHighlight" onclick = "goToMenu(0)">menu0</li>
+    <li id="cat1" onclick = "goToMenu(1)">menu1</li>
   </ul>
 </div>
 
-<div id="container_new" class="container_visible">
-<%# @stories.each do |story| %>
-      <%# render "story_body", { story: story} %>
-  <%# end %>
-<%# paginate @stories %>
+<div id="container_liked" class="container_visible">
+<% @liked_stories.each do |story| %>
+      <% render "stories/story_body", { story: story} %>
+  <% end %>
+<%= paginate @liked_stories %>
 </div>
 
-<div id="container_unfinished">
-
+<div id="container_contributed" class="container_visible">
+  <% @contributed_stories.each do |story| %>
+      <% render "stories/story_body", { story: story} %>
+  <% end %>
+  <%= paginate @liked_stories %>
 </div>

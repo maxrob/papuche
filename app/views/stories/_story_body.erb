@@ -10,11 +10,15 @@
   <% liked = false %>
 
   <%# liked? %>
-  <% story.likes.each do |like| %>
-    <% if like.user_id == current_user.id %>
-        <% liked = true %>
-    <% end %>
+  <% if user_signed_in? %>
+        <% story.likes.each do |like| %>
+            <% if like.user_id == current_user.id %>
+                <% liked = true %>
+            <% end %>
+        <% end %>
   <% end %>
+
+
 
 
   <%# messages loop %>
@@ -22,7 +26,7 @@
       <span> - <%= message.content %></span>
 
         <% story_continued += ' - ' + message.content %>
-        <% if message.user_id == current_user.id %>
+        <% if user_signed_in? && message.user_id == current_user.id %>
             <% contributed = true %>
         <% end %>
   <% end %>
