@@ -1,44 +1,76 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div id="profileDatas">
+  <%= image_tag @user.avatar.url(:original) %>
+</div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
+  <div id="totalField">
+    <div class = "Lfield">
+      <div class="input-file-container">
+        <%= f.label :avatar %><br />
+        <div id="fileStylized">
+          <%= f.label :avatar, "Choisissez un fichier", class: "input-file-trigger" %><br />
+          <%= f.file_field :avatar, as: :file, class: "input-file" %>
+          <p class="file-return"></p>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :avatar %><br />
-    <%= f.file_field :avatar, as: :file %>
+      <div class="field">
+        <%= f.label :nickname %><br />
+        <%= f.text_field :nickname %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+    </div>
+    <div class = "Rfield">
+    <div class="field ">
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
+</div>
   <div class="actions">
-    <%= f.submit "Update" %>
+    <div class="buttonSubmission updateSub"><%= f.submit "Update" %></div>
+    <div class="buttonSubmission"><%= link_to "Back", :back %></div>
   </div>
 <% end %>
 
+<div id="cancelAccount">
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? :( </p>
+<div class="buttonSubmission cAccuntBtn">
+  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+</div>
+</div>
 
-<%= link_to "Back", :back %>
+<div id="storyBar">
+  <ul class="listChoice">
+    <li id="cat0" class="isHighlight" onclick = "goToMenu(0)">Plus Récent</li>
+    <li id="cat3" onclick = "goToMenu(3)">En cours</li>
+  </ul>
+</div>
+
+<div id="container_new" class="container_visible">
+<%# @stories.each do |story| %>
+      <%# render "story_body", { story: story} %>
+  <%# end %>
+<%# paginate @stories %>
+</div>
+
+<div id="container_unfinished">
+
+</div>
+
+
