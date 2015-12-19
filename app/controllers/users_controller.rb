@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
-      @stories = Story.where(user_id: params[:id]).includes(:messages, :user, :likes)
+      @stories = Story.where(user_id: params[:id]).includes(:messages, :user, :likes).page params[:page]
     end
 
 end
