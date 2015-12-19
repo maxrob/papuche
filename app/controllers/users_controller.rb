@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
-
-
   # GET /users
   def index
     @users = User.all
@@ -10,6 +8,8 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @liked_stories = Story.all_liked(user_id: params[:id]).page(params[:page])
+    @contributed_stories = Story.all_contributed(user_id: params[:id]).page(params[:page])
   end
 
   private

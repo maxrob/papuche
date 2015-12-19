@@ -10,11 +10,15 @@
   <% liked = false %>
 
   <%# liked? %>
-  <% story.likes.each do |like| %>
-    <% if like.user_id == current_user.id %>
-        <% liked = true %>
-    <% end %>
+  <% if user_signed_in? %>
+        <% story.likes.each do |like| %>
+            <% if like.user_id == current_user.id %>
+                <% liked = true %>
+            <% end %>
+        <% end %>
   <% end %>
+
+
 
 
   <%# messages loop %>
@@ -22,19 +26,17 @@
       <span> - <%= message.content %></span>
 
         <% story_continued += ' - ' + message.content %>
-        <% if message.user_id == current_user.id %>
+        <% if user_signed_in? && message.user_id == current_user.id %>
             <% contributed = true %>
         <% end %>
   <% end %>
 
-
   </p>
   <div class="optionStory">
 
-    <%= contributed ? "J'ai déjà contribué" : ( link_to "Contribuer", new_message_path(story_id: story.id.to_s) ) %>
+    <%= contributed ? "J'ai déjà contribué" : ( link_to "Contribuer", new_message_path(story_id: story.id.to_s), target:"popup", onclick: "window.open('"+new_message_path(story_id: story.id.to_s)+"','popup','width=600,height=600');" ) %>
 
-
-    <%= link_to 'https://twitter.com/intent/tweet?text="Il était une fois '+truncate(story_continued, length: 100)+'" LINK', target: "_blank"  do %>
+    <%= link_to 'https://twitter.com/intent/tweet?text="Il était une fois '+truncate(story_continued, length: 100)+'" - '+story_url(story), target: "_blank"  do %>
         <%= image_tag("http://allthingsd.com/files/2012/06/twitter-bird-1-380x285.png", width: 25, height: 25, border: 0) %>
     <% end %>
     <%= link_to "❤", liked ? story_dislike_path(story) : story_like_path(story), method: :get %>

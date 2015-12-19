@@ -1,7 +1,32 @@
-<%= image_tag @user.avatar.url(:original), size: '150x150' %>
-<%= @user.email %>
-<%= @user.nickname %>
+<div id="profileDatas">
+	<%= image_tag @user.avatar.url(:original) %>
+	<p><%= @user.nickname %></p>
 
+</div>
 
-<%= link_to 'Edit', edit_user_registration_path %> |
-<%= link_to 'Back', users_path %>
+<div class="buttonSite profileEdit">
+  <%= link_to 'Edit', edit_user_registration_path %>
+</div>
+<%# @user.email %>
+<%# link_to 'Back', users_path %>
+
+<div id="storyBar">
+  <ul class="listChoice">
+    <li id="cat0" class="isHighlight" onclick = "goToMenu(0)">menu0</li>
+    <li id="cat1" onclick = "goToMenu(1)">menu1</li>
+  </ul>
+</div>
+
+<div id="container_liked" class="container_visible">
+<% @liked_stories.each do |story| %>
+      <% render "stories/story_body", { story: story} %>
+  <% end %>
+<%= paginate @liked_stories %>
+</div>
+
+<div id="container_contributed">
+  <% @contributed_stories.each do |story| %>
+      <% render "stories/story_body", { story: story} %>
+  <% end %>
+  <%= paginate @liked_stories %>
+</div>

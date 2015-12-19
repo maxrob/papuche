@@ -48,6 +48,7 @@ class MessagesController < ApplicationController
         @title              = story.title
         @message            = Message.new(story_id: story.id, user_id: user_id )
 
+        render layout: false
       else
         redirect_to stories_path, notice: response
       end
@@ -62,7 +63,7 @@ class MessagesController < ApplicationController
     if Message.user_already_contribute?(user_id: user_id, story_id: story.id)
       return "Vous avez déjà contribué à l'histoire."
 
-    elsif Message.someone_writing?(story_id: story.id)
+    elsif Message.someone_writing?(story_id: story.id, user_id: current_user.id)
       return "Une contribution est en cours."
 
     elsif story.finished

@@ -26,11 +26,17 @@ class StoriesController < ApplicationController
     @story.save ? ( redirect_to stories_path, notice: "L'histoire a bien été ajoutée." ) : ( render :edit )
   end
 
+  def show
+    @story = Story.get(story_id: params[:id])
+  end
+
+  # GET /stories/:id/like
   def like
     Like.like!(story_id: params[:story_id], user_id: current_user.id)
     render text: "Like success"
   end
 
+  # GET /stories/:id/dislike
   def dislike
     Like.dislike!(story_id: params[:story_id], user_id: current_user.id)
     render text: "Dislike success"
