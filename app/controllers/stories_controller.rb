@@ -26,8 +26,18 @@ class StoriesController < ApplicationController
     @story.save ? ( redirect_to stories_path, notice: "L'histoire a bien été ajoutée." ) : ( render :edit )
   end
 
+  # GET /stories/:id
   def show
     @story = Story.get(story_id: params[:id])
+  end
+
+  # GET /search?q=:query
+  def search
+    if params[:q] && !params[:q].blank?
+      @stories = Story.search(query: params[:q]).page(params[:page])
+    else
+      redirect_to root_path, notice: "Mots clés introuvables"
+    end
   end
 
   # GET /stories/:id/like

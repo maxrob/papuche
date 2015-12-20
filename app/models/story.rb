@@ -42,8 +42,16 @@ class Story < ActiveRecord::Base
     self.where(finished: true).order(like: :desc).includes(:messages, :user, :likes)
   end
 
+  def self.search(query:)
+    self
+        .includes(:messages, :user, :likes)
+        .where(["stories.title LIKE :regex OR stories.content LIKE :regex OR messages.content LIKE :regex",
+            regex: "%#{query}%"])
+        .order("messages.created_at DESC")
+  end
+
   def self.all_liked(user_id:)
-    Story
+    self
         .joins(:likes)
         .where(["likes.user_id = ?", user_id])
         .order("likes.created_at DESC")
@@ -51,11 +59,10 @@ class Story < ActiveRecord::Base
   end
 
   def self.all_contributed(user_id:)
-    Story
-        .joins(:messages)
-        .where(["messages.user_id = ?", user_id])
-        .order("messages.created_at DESC")
+    self
         .includes(:messages, :user, :likes)
+        .where(["messages.user_id = :user_id OR stories.user_id = :user_id", user_id: user_id])
+        .order("messages.created_at DESC")
   end
 
 end
