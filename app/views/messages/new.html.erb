@@ -8,9 +8,13 @@
 		<%= f.hidden_field :user_id, value: @message.user_id %>
 	    <%= f.hidden_field :story_id, value: @message.story_id %>
 	    <p><%= @story_content %></p><br/>
-	    <div id="contentStory"><%= f.text_field :content, placeholder: "..." %></div> <br/>
-	    <%= f.submit %>
-
+	    <div id="contentStory">
+	    	<p>Ecrivez votre histoire en 10 mots :</p>
+	    	<%= f.text_field :content, placeholder: "..." %></div> <br/>
+	    <div id="buttonsConfirm">
+		    <%= f.submit %>
+		    <div id="abordButton"><%= link_to 'Annuler', stories_path %></div>
+		</div>
 		<% end %>
-	<%= link_to 'Annuler', stories_path %>
+	
 </div>
