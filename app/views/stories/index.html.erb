@@ -2,9 +2,9 @@
   typePage = 0
 </script>
 
-<h2>Listing Stories</h2>
+<h2>Partagez votre histoire</h2>
 <div class="descPage">
-  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+  <p>Sur Papuche développez votre âme d’artiste en créant ou participant à des histoires en tous genres. Lancez vous, déposez votre plume pour en faire profiter la communauté.</p>
 </div>
 <div class="buttonSite">
   <p>Participer</p>
@@ -17,7 +17,7 @@
     <li id="cat2" onclick = "goToMenu(2)">Aléatoire</li>
     <li id="cat3" onclick = "goToMenu(3)">En cours</li>
   </ul>
-  <div class="newStory"><%= link_to "#{ image_tag(asset_path('images/newstory.png')) }Nouvelle histoire".html_safe, new_story_path %></div>
+  <div class="newStory"><%= link_to "#{ image_tag('newstory.png') }Nouvelle histoire".html_safe, new_story_path %></div>
 </div>
 
 
