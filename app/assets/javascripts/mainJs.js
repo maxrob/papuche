@@ -77,6 +77,23 @@ ready = function() {
         document.getElementById('cat0').classList.add("isHighlight");
     }
     else if (typePage == 1){
+        $('#container_new').addClass( "container_visible" );
+        $('#container_new').masonry({
+            isFitWidth: true,
+            itemSelector : '.item'
+        });
+        $('#container_new').removeClass( "container_visible" );
+
+        $('#container_unfinished').addClass( "container_visible" );
+        $('#container_unfinished').masonry({
+            isFitWidth: true,
+            itemSelector : '.item'
+        });
+        $('#container_unfinished').removeClass( "container_visible" );
+
+        $('#container_new').addClass( "container_visible" );
+
+        document.getElementById('cat0').classList.add("isHighlight");
 
     }
     else if (typePage == 2){
