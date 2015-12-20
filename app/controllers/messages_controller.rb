@@ -30,7 +30,6 @@ class MessagesController < ApplicationController
   end
 
   def informations
-    render layout: false
   end
 
 

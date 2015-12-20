@@ -1,9 +1,7 @@
-require "spec_helper"
+require 'rails_helper'
 
 RSpec.describe "Message", :type => :model do
-
-  describe "Message" do
-    it "Require content" do
+   it "Require content" do
       user = User.create(email: "toto@gmail.com", nickname: "Toto", password: "totototo")
       other_user = User.create(email: "titi@gmail.com", nickname: "Titi", password: "titititi")
       story = Story.create(title: "Mon titre", content: "Mon contenu" , user_id: user.id)
@@ -75,5 +73,4 @@ RSpec.describe "Message", :type => :model do
 
       expect(Message.get_story_content(story_id: story.id)).to eq(story.content + " " + message.content)
     end
-  end
 end

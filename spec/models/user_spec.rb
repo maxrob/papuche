@@ -1,9 +1,7 @@
-require "spec_helper"
+require 'rails_helper'
 
 RSpec.describe "User", :type => :model do
-
-  describe "User" do
-    it "User can be saved" do
+   it "User can be saved" do
       user = User.create(email: "toto@gmail.com", nickname: "Toto", password: "totototo")
       user.save!
 
@@ -66,5 +64,4 @@ RSpec.describe "User", :type => :model do
       expect(second_user.valid?).to eq(false)
     end
 
-  end
 end
