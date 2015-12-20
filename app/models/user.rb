@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
                     }
 
-
+  validates :nickname, :email, presence: true
   validates_uniqueness_of :nickname
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 end

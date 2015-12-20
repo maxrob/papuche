@@ -32,7 +32,7 @@ class Message < ActiveRecord::Base
     story_content = Story.find(story_id).content
 
 
-    stories = Message.where(story_id: story_id)
+    stories = Message.where(story_id: story_id).order(created_at: :asc)
     if stories
       stories.each do |message|
         story_content += ' ' + message.content
