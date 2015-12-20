@@ -7,7 +7,7 @@
   <div id="totalField">
     <div class = "Lfield">
       <div class="input-file-container">
-        <%= f.label :avatar %><br />
+        <%= f.label :avatar, "Photo de profil" %><br />
         <div id="fileStylized">
           <%= f.label :avatar, "Choisissez un fichier", class: "input-file-trigger" %><br />
           <%= f.file_field :avatar, as: :file, class: "input-file" %>
@@ -16,7 +16,7 @@
       </div>
 
       <div class="field">
-        <%= f.label :nickname %><br />
+        <%= f.label :nickname, "Pseudo" %><br />
         <%= f.text_field :nickname %>
       </div>
 
@@ -30,28 +30,26 @@
     </div>
     <div class = "Rfield">
     <div class="field ">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.label :password, "Mot de passe" %> <i>( Laissez vide si inchangé )</i><br />
       <%= f.password_field :password, autocomplete: "off" %>
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label :password_confirmation, "Confirmer votre mot de passe" %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
   </div>
 </div>
   <div class="actions">
-    <div class="buttonSubmission updateSub"><%= f.submit "Update" %></div>
-    <div class="buttonSubmission"><%= link_to "Back", :back %></div>
+    <div class="buttonSubmission updateSub"><%= f.submit "Mettre à jour" %></div>
+    <div class="buttonSubmission"><%= link_to "Retour", :back %></div>
   </div>
 <% end %>
 
 <div id="cancelAccount">
-<h3>Cancel my account</h3>
 
-<p>Unhappy? :( </p>
 <div class="buttonSubmission cAccuntBtn">
-  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+  <%= button_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Êtes-vous sur ?" }, method: :delete %>
 </div>
 </div>
 

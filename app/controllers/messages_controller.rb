@@ -16,18 +16,21 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if Permission.timeout?(user_id: current_user.id, story_id: @message.story_id)
-      redirect_to stories_path, notice: "Temps d'écriture dépassé. Veuillez réessayer."
+      redirect_to informations_path, notice: "Temps d'écriture dépassé. Veuillez réessayer."
 
     else
       if @message.save
         @message.check_story_finished!
-        redirect_to stories_path, notice: "Histoire continué avec succès."
+        redirect_to informations_path, notice: "Histoire continué avec succès."
       else
         self._fill_form
       end
     end
 
+  end
 
+  def informations
+    render layout: false
   end
 
 
@@ -50,11 +53,11 @@ class MessagesController < ApplicationController
 
         render layout: false
       else
-        redirect_to stories_path, notice: response
+        redirect_to informations_path, notice: response
       end
 
     else
-      redirect_to stories_path, notice: "Histoire non identifié"
+      redirect_to informations_path, notice: "Histoire non identifié"
     end
   end
 

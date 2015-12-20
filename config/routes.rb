@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 
   devise_for :users, controllers: {registrations: 'registrations'}
-  resources :users, only: [:index, :show]
+  resources :users, only: [:show]
 
   resources :stories do
     get 'like', as: :like
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'stories/:id/like' => 'stories#like'
 
   resources :messages
+  get 'informations' => 'messages#informations'
 
 
 end
