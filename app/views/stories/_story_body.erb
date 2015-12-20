@@ -35,7 +35,8 @@
       <span class="tweetLink"><%= link_to 'https://twitter.com/intent/tweet?text="Il était une fois '+truncate(story_continued, length: 100)+'" - '+story_url(story), target: "_blank"  do %></span>
           <%= image_tag("tweet.svg", width: 30, border: 0) %>
       <% end %>
-      <span class="heartLink"><%= link_to "❤", liked ? story_dislike_path(story) : story_like_path(story), method: :get %></span>
+      <span class="heartLink"><%= link_to "❤", liked ? story_dislike_path(story) : story_like_path(story), method: :get,
+        :onclick => 'goLike('+story_like_path(story)+')', :class => "clickHeart" %></span>
     </div>
   </div>
 </div>

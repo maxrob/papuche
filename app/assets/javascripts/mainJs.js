@@ -134,3 +134,21 @@ ready = function() {
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
+
+// $(".clickHeart").click(function(e){
+//     e.preventDefault();
+//     e.stopPropagation();
+// });
+
+// function goLike (test) {
+//     console.log(test)
+
+//     // $.ajax({
+
+//     //    url : 'more_com.php', // La ressource ciblée
+
+//     //    type : 'GET' // Le type de la requête HTTP.
+
+//     // });
+// }
+
