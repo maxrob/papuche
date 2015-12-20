@@ -106,6 +106,12 @@ ready = function() {
             the_return.innerHTML = this.value;  
         });
     }
+    else if (typePage == 4){
+        $('#container_search').masonry({
+            isFitWidth: true,
+            itemSelector : '.item'
+        });
+    }
     
 };
 

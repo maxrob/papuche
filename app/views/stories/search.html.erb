@@ -1,4 +1,13 @@
-<% @stories.each do |story| %>
-    <%= render "story_body", { story: story} %>
-<% end %>
-<%= paginate @stories %>
+<h2>Search</h2>
+<br/>
+
+<div id="container_search">
+	<% @stories.each do |story| %>
+	    <%= render "story_body", { story: story} %>
+	<% end %>
+	<%= paginate @stories %>
+</div>
+
+<script type="text/javascript">
+   typePage = 4;
+</script>
