@@ -1,33 +1,5 @@
 jQuery(window).on('load', function(){
-  $('#container_unfinished').masonry({
-    isFitWidth: true,
-    itemSelector : '.item',
-  });
-    // ajout de la classe JS à HTML
-    document.querySelector("html").classList.add('js');
-     
-    // initialisation des variables
-    var fileInput  = document.querySelector( ".input-file" ),  
-        button     = document.querySelector( ".input-file-trigger" ),
-        the_return = document.querySelector(".file-return");
-     
-    // action lorsque la "barre d'espace" ou "Entrée" est pressée
-    button.addEventListener( "keydown", function( event ) {
-        if ( event.keyCode == 13 || event.keyCode == 32 ) {
-            fileInput.focus();
-        }
-    });
-     
-    // action lorsque le label est cliqué
-    button.addEventListener( "click", function( event ) {
-       fileInput.focus();
-       return false;
-    });
-     
-    // affiche un retour visuel dès que input:file change
-    fileInput.addEventListener( "change", function( event ) {  
-        the_return.innerHTML = this.value;  
-    });
+    ready();
 });
 
 var menuNew = 0;
@@ -69,3 +41,73 @@ function goToMenu (menu){
 
 }
 
+var ready;
+ready = function() {
+    if (typePage == 0){
+        $('#container_new').addClass( "container_visible" );
+        $('#container_new').masonry({
+            isFitWidth: true,
+            itemSelector : '.item'
+        });
+        $('#container_new').removeClass( "container_visible" );
+
+        $('#container_popular').addClass( "container_visible" );
+        $('#container_popular').masonry({
+            isFitWidth: true,
+            itemSelector : '.item'
+        });
+        $('#container_popular').removeClass( "container_visible" );
+
+        $('#container_random').addClass( "container_visible" );
+        $('#container_random').masonry({
+            isFitWidth: true,
+            itemSelector : '.item'
+        });
+        $('#container_random').removeClass( "container_visible" );
+
+        $('#container_unfinished').addClass( "container_visible" );
+        $('#container_unfinished').masonry({
+            isFitWidth: true,
+            itemSelector : '.item'
+        });
+        $('#container_unfinished').removeClass( "container_visible" );
+
+        $('#container_new').addClass( "container_visible" );
+
+        document.getElementById('cat0').classList.add("isHighlight");
+    }
+    else if (typePage == 1){
+
+    }
+    else if (typePage == 2){
+        // ajout de la classe JS à HTML
+        document.querySelector("html").classList.add('js');
+         
+        // initialisation des variables
+        var fileInput  = document.querySelector( ".input-file" ),  
+            button     = document.querySelector( ".input-file-trigger" ),
+            the_return = document.querySelector(".file-return");
+         
+        // action lorsque la "barre d'espace" ou "Entrée" est pressée
+        button.addEventListener( "keydown", function( event ) {
+            if ( event.keyCode == 13 || event.keyCode == 32 ) {
+                fileInput.focus();
+            }
+        });
+         
+        // action lorsque le label est cliqué
+        button.addEventListener( "click", function( event ) {
+           fileInput.focus();
+           return false;
+        });
+         
+        // affiche un retour visuel dès que input:file change
+        fileInput.addEventListener( "change", function( event ) {  
+            the_return.innerHTML = this.value;  
+        });
+    }
+    
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

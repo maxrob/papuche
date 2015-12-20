@@ -1,3 +1,7 @@
+<script type="text/javascript">
+  typePage = 1
+</script>
+
 <div id="profileDatas">
 	<%= image_tag @user.avatar.url(:original) %>
 	<p><%= @user.nickname %></p>
@@ -12,21 +16,27 @@
 
 <div id="storyBar">
   <ul class="listChoice">
-    <li id="cat0" class="isHighlight" onclick = "goToMenu(0)">menu0</li>
-    <li id="cat1" onclick = "goToMenu(1)">menu1</li>
+    <li id="cat0" class="isHighlight" onclick = "goToMenu(0)">Plus Récent</li>
+    <li id="cat3" onclick = "goToMenu(3)">En cours</li>
   </ul>
 </div>
 
-<div id="container_liked" class="container_visible">
+<!-- CONTAINER LIKED -->
+<div id="container_new" class="container_visible">
 <% @liked_stories.each do |story| %>
-      <% render "stories/story_body", { story: story} %>
+      <%= render "stories/story_body", { story: story} %>
   <% end %>
 <%= paginate @liked_stories %>
 </div>
 
-<div id="container_contributed">
+<!-- CONTAINER CONTRIBUTED -->
+<div id="container_unfinished">
   <% @contributed_stories.each do |story| %>
-      <% render "stories/story_body", { story: story} %>
+      <%= render "stories/story_body", { story: story} %>
   <% end %>
   <%= paginate @liked_stories %>
 </div>
+
+<script type="text/javascript">
+   typePage = 1;
+</script>

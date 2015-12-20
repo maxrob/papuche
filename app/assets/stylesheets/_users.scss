@@ -48,7 +48,6 @@
 body {
 	font-family: FreightSans;
 	background: #f6eadc image-url("light.png") no-repeat center top;
-	margin-top: 40px;
 }
 
 h1 {
@@ -80,14 +79,17 @@ h3 {
 #main-content {
 	/*background-color: red;*/
 	/*margin: 0px 230px;*/
+
     max-width:1170px;
     margin: 0 auto;
 }
 
 #navBar {
+
 	height: 20px;
     width:1140px;
     margin: 0 auto;
+    margin-top: 40px;
     ul {
         float: right;
         li {
@@ -131,7 +133,7 @@ h3 {
     width: 190px;
     height: 45px;
     border-radius: 40px;
-    border: 2px solid black;
+    border: 2px solid #333333;
     background-color: rgba(255, 255, 255, 0);
     text-align: center;
     transition: all ease 0.3s;
@@ -144,7 +146,7 @@ h3 {
         position: relative;
         top: 13.5px;
         font-size: 15px;
-        color: black;
+        color: #333333;
         text-transform: uppercase;
         font-weight: normal;
         font-size: 17px;
@@ -153,7 +155,7 @@ h3 {
     p {
         margin-top: 13.5px;
         font-size: 15px;
-        color: black;
+        color: #333333;
         text-transform: uppercase;
         font-weight: normal;
         font-size: 17px;
@@ -161,7 +163,7 @@ h3 {
 }
 
 .buttonSite:hover{
-    background-color: rgba(34, 34, 34, 1);
+    background-color: #333333;
     p {
         color: white;
     }
@@ -487,7 +489,7 @@ h3 {
 .js .input-file:focus + .input-file-trigger,
 .js .input-file-trigger:hover,
 .js .input-file-trigger:focus {
-  background: rgba(34, 34, 34, 1);
+  background: #333333;
   color: white;
 }
  
@@ -538,7 +540,7 @@ h3 {
     width: 190px;
     height: 45px;
     border-radius: 40px;
-    border: 2px solid black;
+    border: 2px solid #333333;
     background-color: rgba(255, 255, 255, 0);
     text-align: center;
     transition: all ease 0.3s;
@@ -551,7 +553,7 @@ h3 {
         position: relative;
         top: 13.5px;
         font-size: 15px;
-        color: black;
+        color: #333333;
         text-transform: uppercase;
         font-weight: normal;
         font-size: 17px;
@@ -560,7 +562,7 @@ h3 {
     p {
         margin-top: 13.5px;
         font-size: 15px;
-        color: black;
+        color: #333333;
         text-transform: uppercase;
         font-weight: normal;
         font-size: 17px;
@@ -580,7 +582,7 @@ h3 {
 }
 
 .buttonSubmission:hover{
-    background-color: rgba(34, 34, 34, 1);
+    background-color: #333333;
     p {
         color: white;
     }
@@ -637,7 +639,7 @@ h3 {
                 width: 170px;
                 height: 40px;
                 border-radius: 40px;
-                border: 2px solid black;
+                border: 2px solid #333333;
                 background-color: rgba(255, 255, 255, 0);
                 text-align: center;
                 transition: all ease 0.3s;
@@ -648,7 +650,7 @@ h3 {
             }
 
             input:hover{
-                background-color: rgba(34, 34, 34, 1);
+                background-color: #333333;
                 color: white;
             }
         }
@@ -676,7 +678,7 @@ h3 {
         width: 170px;
         height: 40px;
         border-radius: 40px;
-        border: 2px solid black;
+        border: 2px solid #333333;
         background-color: rgba(255, 255, 255, 0);
         text-align: center;
         transition: all ease 0.3s;
@@ -686,7 +688,117 @@ h3 {
     }
 
     input:hover{
-        background-color: rgba(34, 34, 34, 1);
+        background-color: #333333;
         color: white;
+    }
+}
+
+.buttonConnexion {
+    position: relative;
+    top: 10px;
+    margin-top: -16px;
+    display: inline-block;
+    width: 130px;
+    height: 35px;
+    border-radius: 40px;
+    border: 2px solid #333333;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    transition: all ease 0.3s;
+    -webkit-transition: all ease 0.3s;
+    cursor: pointer;
+    overflow: hidden;
+    float: right;
+
+    input[type=submit] {
+        width: 100%;
+        height: 100%;
+        padding:5px 15px; 
+        background:rgba(34, 34, 34, 0); 
+        border:0 none;
+        font-size: 12px;
+        cursor:pointer;
+        text-transform: uppercase;
+        -webkit-border-radius: 5px;
+        border-radius: 5px; 
+
+    }
+}
+
+.buttonConnexion:hover{
+    background-color: #333333;
+    input[type=submit] {
+        color: white;
+    }
+}
+#new_story {
+    text-align: center;
+    .actions {
+        width: auto;
+        text-align: center;
+        a {
+            margin-right: 50px;
+            color: #666666;
+            font-style: italic;
+        }
+        input {
+            width: 170px;
+            height: 40px;
+            border-radius: 40px;
+            border: 2px solid #333333;
+            background-color: rgba(255, 255, 255, 0);
+            text-align: center;
+            transition: all ease 0.3s;
+            -webkit-transition: all ease 0.3s;
+            margin-left: 105px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        input:hover{
+            background-color: #333333;
+            color: white;
+        }
+    }
+}
+
+#story_title {
+    font-family: ACaslonPro;
+    font-weight: bold;
+    font-size: 30px;
+    width: 370px;
+    color: #666666;
+    background-color: #fafafa;
+    padding-left:20px;
+    padding-top: 16px;
+    box-shadow:none !important;
+    outline: none!important;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+#story_content {
+    padding-left:20px;
+    width: 370px;
+    height: 100px;
+    box-shadow:none !important;
+    outline: none!important;
+    background-color: #fafafa;
+}
+
+/*#messagePopup{
+    width: 100%;
+    height: 100%;
+    padding: 0!important;
+    margin: 0!important;
+    background-color: aqua;
+}*/
+
+.newMessage {
+    width: 100%!important;
+    height: 100%!important;
+    margin: 0!important;
+    #contentStory {
+        margin-left: 30px;
     }
 }

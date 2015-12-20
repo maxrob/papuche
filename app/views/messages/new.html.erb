@@ -1,15 +1,16 @@
-<h1>Continuer l'histoire</h1>
+<%= stylesheet_link_tag    'application', media: 'all' %>
+<div class="item newMessage">
+	<h3><%= @title %></h3>
+	<%= image_tag('uponatime.svg', class: 'uponatime') %>
 
-<%= @message.errors.full_messages.join(',') %>
+	<%= @message.errors.full_messages.join(',') %>
+		<%= form_for @message do |f| %>
+		<%= f.hidden_field :user_id, value: @message.user_id %>
+	    <%= f.hidden_field :story_id, value: @message.story_id %>
+	    <p><%= @story_content %></p><br/>
+	    <div id="contentStory"><%= f.text_field :content, placeholder: "..." %></div> <br/>
+	    <%= f.submit %>
 
-<%= form_for @message do |f| %>
-
-    <%= f.hidden_field :user_id, value: @message.user_id %>
-    <%= f.hidden_field :story_id, value: @message.story_id %>
-    <%= @title %> <br/>
-    <%= @story_content %> <%= f.text_field :content, placeholder: "..." %> <br/>
-    <%= f.submit %>
-
-<% end %>
-
-<%= link_to 'Annuler', stories_path %>
+		<% end %>
+	<%= link_to 'Annuler', stories_path %>
+</div>

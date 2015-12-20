@@ -1,3 +1,8 @@
+
+<script type="text/javascript">
+  typePage = 0
+</script>
+
 <h2>Listing Stories</h2>
 <div class="descPage">
   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
@@ -8,7 +13,7 @@
 
 <div id="storyBar">
   <ul class="listChoice">
-    <li id="cat0" class="isHighlight" onclick = "goToMenu(0)">Plus Récent</li>
+    <li id="cat0" onclick = "goToMenu(0)">Plus Récent</li>
     <li id="cat1" onclick = "goToMenu(1)">Populaire</li>
     <li id="cat2" onclick = "goToMenu(2)">Aléatoire</li>
     <li id="cat3" onclick = "goToMenu(3)">En cours</li>
@@ -18,7 +23,7 @@
 
 
 
-<div id="container_new" class="container_visible">
+<div id="container_new">
   <% @stories_finished.each do |story| %>
       <%= render "story_body", { story: story} %>
   <% end %>
@@ -48,3 +53,7 @@
   <% end %>
 <%= paginate @stories_unfinished %>
 </div>
+
+<script type="text/javascript">
+   typePage = 0;
+</script>

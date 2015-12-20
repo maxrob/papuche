@@ -23,8 +23,8 @@
         </div>
         </li>
     <% else %>
-        <li><%= button_to "Connexion", new_user_session_path, method: :get, class: 'btn-test' %></li>
-        <li><%= button_to "S'inscrire", new_user_registration_path, method: :get, class: 'btn-test' %></li>
+        <li class="linkConnexion"><%= link_to "Inscription", new_user_registration_path, method: :get %></li>
+        <li class="buttonConnexion"><%= button_to "Connexion", new_user_session_path, method: :get %></li>
     <% end %>
   </ul>
 </div>

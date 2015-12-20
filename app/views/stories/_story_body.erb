@@ -24,7 +24,6 @@
   <%# messages loop %>
   <% story.messages.each do |message| %>
       <span> - <%= message.content %></span>
-
         <% story_continued += ' - ' + message.content %>
         <% if user_signed_in? && message.user_id == current_user.id %>
             <% contributed = true %>

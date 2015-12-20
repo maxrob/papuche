@@ -1,13 +1,17 @@
-<h1><%= ( controller.action_name == 'new' ) ? "Commencer une histoire" : "Modifier une histoire" %></h1>
+<h2><%= ( controller.action_name == 'new' ) ? "Commencer une histoire" : "Modifier une histoire" %></h2>
 
 <%= @story.errors.full_messages.join(',') %>
 
 <%= form_for @story do |f| %>
 
     <%= f.text_field :title, placeholder: "Titre" %> <br/>
-    Il était une fois <%= f.text_field :content, placeholder: "..." %> <br/>
-    <%= f.submit %>
+    <p>Il était une fois</p>
+    <%= f.text_field :content, placeholder: "..." %> <br/>
+    <div class="actions">
+	    <%= link_to 'Annuler', stories_path %>
+	    <%= f.submit %>
+	</div>
 
 <% end %>
 
-<%= link_to 'Annuler', stories_path %>
+
